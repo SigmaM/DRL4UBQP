@@ -157,7 +157,7 @@ class DRL4UBQP(nn.Module):
             change_t = change[visit_idx_xy, ptr[visit_idx_xy]]
 
             reward_current = reward_ + change_t
-            gap = reward_current.le(reward_).float()
+            gap = reward_current.lt(reward_).float()
             if self.update_fn is not None:
                 dynamic, x = self.update_fn(Q, x, x_before, dynamic, gap, reward_current)
 
